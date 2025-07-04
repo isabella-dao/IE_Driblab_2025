@@ -1,6 +1,6 @@
 # IE 2025 Corporate Project - Driblab xG model
 
-Run in Linux terminal
+Run application in Linux terminal
 
 ### System Prep (one-time only)
 In the VM terminal: 
