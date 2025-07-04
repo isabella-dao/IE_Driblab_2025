@@ -22,7 +22,9 @@ Every time before running the model, in the VM terminal:
 
 ### Running the Model
 - cd application
+
 For output file with just the predictions:
 - python3 main.py inputfilename.json --output desiredoutputname.csv
+
 For output file with features used and predictions:
 - python3 main.py inputfilename.json --output desiredoutputname.csv --full-output
