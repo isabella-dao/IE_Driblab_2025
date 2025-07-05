@@ -5,7 +5,7 @@ Classify footbal shots from a Linux terminal.
 ### System Prep (one-time only)
 In the VM terminal: 
 
-´´´
+```
 sudo apt update && sudo apt install -y\
 ```
 
