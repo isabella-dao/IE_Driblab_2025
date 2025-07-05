@@ -55,11 +55,11 @@ cd classification
 For output file with just the predictions:
 
 ```
-python3 main.py input1.json input2.jsonl --output desiredoutputname.csv
+python3 classify_shots.py input1.json input2.jsonl --output desiredoutputname.csv
 ```
 
 For output file with features used and predictions:
 
 ```
-python3 main.py input1.json input2.jsonl --output desiredoutputname.csv --full-output
+python3 classify_shots.py input1.json input2.jsonl --output desiredoutputname.csv --full-output
 ```
