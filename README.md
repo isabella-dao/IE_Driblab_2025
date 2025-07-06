@@ -6,7 +6,7 @@ Classify footbal shots from a Linux terminal.
 In the VM terminal: 
 
 ```
-sudo apt update && sudo apt install -y\
+sudo apt update && sudo apt install -y
 ```
 
 ```
@@ -36,7 +36,7 @@ pip install --upgrade pip
 ```
 
 ```
-pip install -r lib.requirements.txt
+pip install -r lib/requirements.txt
 ```
 
 ### Environment Set-Up
@@ -55,11 +55,11 @@ cd classification
 For output file with just the predictions:
 
 ```
-python3 classify_shots.py input1.json input2.jsonl --output desiredoutputname.csv
+python3 main.py match.json match_tracking_data.jsonl --player-map player_event_id_to_tracking_id.json --team-map team_event_id_to_tracking_id.json \--output predictions.csv
 ```
 
 For output file with features used and predictions:
 
 ```
-python3 classify_shots.py input1.json input2.jsonl --output desiredoutputname.csv --full-output
+python3 main.py match.json match_tracking_data.jsonl --player-map player_event_id_to_tracking_id.json --team-map team_event_id_to_tracking_id.json --output predictions.csv --full-output
 ```
