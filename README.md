@@ -6,15 +6,11 @@ Classify footbal shots from a Linux terminal.
 In the VM terminal: 
 
 ```
-sudo apt update && sudo apt install -y
+sudo apt update
 ```
 
 ```
-sudo apt install python3-venv
-```
-
-```
-sudo apt install python3-pip
+sudo apt install python3-venv python3-pip
 ```
 
 Copy the application folder into the VM, and proceed in VM terminal:
@@ -29,10 +25,6 @@ python3 -m venv venv
 
 ```
 source venv/bin/activate
-```
-
-```
-pip install --upgrade pip
 ```
 
 ```
