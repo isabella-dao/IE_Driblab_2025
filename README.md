@@ -1,26 +1,33 @@
 # IE 2025 Corporate Project - Driblab xG model
 
-Classify footbal shots from a Linux terminal. 
+Classify footbal shots from a Linux terminal.
 
-### System Prep (one-time only)
-In the VM terminal: 
+### Requirements
 
-```
-sudo apt update && sudo apt install -y
-```
+This project has been tested on Ubuntu 24.04 LTS. It should run on Windows and Mac OSX as well, with minor adjustements.
 
-```
-sudo apt install python3-venv
-```
+### System preparation (one-time only)
+
+In the Linux system terminal:
 
 ```
-sudo apt install python3-pip
+sudo apt update
 ```
 
-Copy the application folder into the VM, and proceed in VM terminal:
+```
+sudo apt install -y python3-venv python3-pip
+```
+
+Clone the repository with:
 
 ```
-cd classification
+git clone https://github.com/isabella-dao/IE_Driblab_2025.git
+```
+
+and proceed as follows:
+
+```
+cd IE_Driblab_2025/classification
 ```
 
 ```
@@ -32,15 +39,12 @@ source venv/bin/activate
 ```
 
 ```
-pip install --upgrade pip
-```
-
-```
 pip install -r lib/requirements.txt
 ```
 
-### Environment Set-Up
-Every time before running the model, in the VM terminal:
+### Environment setup
+
+Every time before running the model, execute in the terminal:
 
 ```
 source venv/bin/activate
@@ -55,11 +59,11 @@ cd classification
 For output file with just the predictions:
 
 ```
-python3 classify_shots.py input1.json input2.jsonl --player-map player_event_id_to_tracking_id.json --team-map team_event_id_to_tracking_id.json --output desiredname.csv
+python3 classify_shots.py shots_file.json tracking_file.jsonl --player-map player_event_id_to_tracking_id.json --team-map team_event_id_to_tracking_id.json --output desiredname.csv
 ```
 
 For output file with features used and predictions:
 
 ```
-python3 classify_shots.py input1.json input2.jsonl --player-map player_event_id_to_tracking_id.json --team-map team_event_id_to_tracking_id.json --output desiredname.csv --full-output
+python3 classify_shots.py shots_file.json tracking_file.jsonl --player-map player_event_id_to_tracking_id.json --team-map team_event_id_to_tracking_id.json --output desiredname.csv --full-output
 ```
