@@ -385,6 +385,7 @@ def process_all_matches(filepaths, player_map, team_map):
                 goalkeeper_angle_to_goal_deg = None
 
             all_shots.append({
+                "id": shot['id'],
                 "period": shot['matchPeriod'],
                 "minute": shot['minute'],
                 "second": shot['second'],

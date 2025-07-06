@@ -40,7 +40,12 @@ def prepare_data_for_prediction(all_shots_df):
     df = df.dropna(subset=features)
 
     # Select only the features for prediction
-    X_pred = df[features]
+    # Ensure 'id' is present
+    if 'id' not in all_shots_df.columns:
+        raise ValueError("'id' column is missing from input data.")
+
+    X_pred = df[features].copy()
+    X_pred.insert(0, 'id', all_shots_df['id'].values)
 
     return X_pred
 
@@ -51,11 +56,17 @@ def run_model(MODEL_PATH, X_pred, full_output=False):
     """
     model = joblib.load(MODEL_PATH)
     # Run predictions
-    predictions = model.predict(X_pred)
+    predictions = model.predict(X_pred.drop(columns=['id']))
 
     if full_output:
         result_df = X_pred.copy()
         result_df['predictions'] = predictions
+        # Ensure 'id' is first column
+        cols = result_df.columns.tolist()
+        if cols[0] != 'id':
+            cols.remove('id')
+            cols = ['id'] + cols
+            result_df = result_df[cols]
         return result_df
     else:
-        return [{'predictions': float(p)} for p in predictions]
+        return [{'id': row['id'], 'predictions': float(pred)} for row, pred in zip(X_pred.to_dict('records'), predictions)]
