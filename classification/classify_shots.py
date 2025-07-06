@@ -5,16 +5,22 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=ImportWarning)
 
 import argparse
+import json
 from lib.utils import load_jsons, save_csv
 from lib.model import run_model, prepare_data_for_prediction
 from lib.enrichment import match_input_files, process_all_matches
-from lib.mappings import player_map, team_map
 import os
 MODEL_PATH = "models/best_model_lgbm.pkl"
+
+def load_mappings(path):
+    with open(path) as f:
+        return json.load(f)
 
 def main():
     parser = argparse.ArgumentParser(description="Run ML model on JSON input.")
     parser.add_argument("input_files", nargs='+', help="One or more JSON files.")
+    parser.add_argument("--player-map", required=True, help="Path to player mapping JSON.")
+    parser.add_argument("--team-map", required=True, help="Path to team mapping JSON.")
     parser.add_argument("--output", required=True, help="Output CSV path.")
     parser.add_argument("--full-output", action="store_true", help="Include all features in the CSV.")
     args = parser.parse_args()
@@ -24,6 +30,8 @@ def main():
         if not os.path.exists(MODEL_PATH):
             raise FileNotFoundError(f"Model file not found at: {MODEL_PATH}")
         
+        player_map = load_mappings(args.player_map)
+        team_map = load_mappings(args.team_map)
         data = load_jsons(args.input_files)
         all_shots_df = process_all_matches(args.input_files, player_map, team_map)  # Preprocessed DataFrame
         if all_shots_df.empty:

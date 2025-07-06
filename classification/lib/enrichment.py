@@ -1,5 +1,3 @@
-from lib.mappings import player_map, team_map
-
 import json
 import math
 import os
